@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by stefanini on 25/05/17.
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "com.catalogo")
 public class SampleController implements CommandLineRunner {
 
     @Autowired
