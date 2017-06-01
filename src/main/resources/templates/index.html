@@ -10,5 +10,11 @@
     <p>Preço: <input type="text" th:field="*{preco}" /></p>
     <p><input type="submit" value="Enviar" /> <input type="reset" value="Limpar" /></p>
 </form>
+<ul th:each="it : ${itens}">
+    <li th:text="${it.id}"></li>
+    <li th:text="${it.nome}"></li>
+    <li th:text="${it.preco}"></li>
+    <li><a class="delete btn btn-sm btn-danger" th:href="@{/excluir/{id}(id=${it.id})}">Excluir</a></li>
+</ul>
 </body>
 </html>

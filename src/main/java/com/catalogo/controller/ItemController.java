@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -20,15 +21,22 @@ public class ItemController {
     @RequestMapping("/index")
     public String index(Model model) {
         model.addAttribute("item", new Item());
+        model.addAttribute("itens", itemRepository.findAll());
         return "index";
     }
 
     @RequestMapping("/cadastrar")
-    public String cadastrar(@ModelAttribute Item item) {
+    public String cadastrar(@ModelAttribute Item item, Model model) {
         itemRepository.save(item);
-        for (Item i : itemRepository.findAll()) {
-            System.out.println(i.toString());
-        }
+        model.addAttribute("itens", itemRepository.findAll());
+        return "index";
+    }
+
+    @RequestMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") String id, Model model) {
+        itemRepository.delete(id);
+        model.addAttribute("item", new Item());
+        model.addAttribute("itens", itemRepository.findAll());
         return "index";
     }
 }
