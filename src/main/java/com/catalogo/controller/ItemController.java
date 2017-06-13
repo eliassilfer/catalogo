@@ -25,6 +25,12 @@ public class ItemController {
         return "index";
     }
 
+    @RequestMapping("/cadastro")
+    public String cadastrar(Model model) {
+        model.addAttribute("item", new Item());
+        return "cadastrar";
+    }
+
     @RequestMapping("/cadastrar")
     public String cadastrar(@ModelAttribute Item item, Model model) {
         itemRepository.save(item);

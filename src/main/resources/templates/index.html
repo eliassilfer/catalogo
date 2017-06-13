@@ -5,16 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<form action="#" th:action="@{/cadastrar}" th:object="${item}" method="post">
-    <p>Nome: <input type="text" th:field="*{nome}" /></p>
-    <p>Preço: <input type="text" th:field="*{preco}" /></p>
-    <p><input type="submit" value="Enviar" /> <input type="reset" value="Limpar" /></p>
-</form>
 <ul th:each="it : ${itens}">
     <li th:text="${it.id}"></li>
     <li th:text="${it.nome}"></li>
     <li th:text="${it.preco}"></li>
     <li><a th:href="@{/excluir/{id}(id=${it.id})}">Excluir</a></li>
 </ul>
+<a th:href="@{/cadastro}">Novo Item</a>
 </body>
 </html>
